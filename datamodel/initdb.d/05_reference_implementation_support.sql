@@ -687,4 +687,42 @@ CREATE TABLE dcsa_im_v3_0.ebl_solution_provider_type (
 --- DDT-948
 ALTER TABLE dcsa_im_v3_0.equipment_event ADD utilized_transport_equipment_id uuid NULL REFERENCES dcsa_im_v3_0.utilized_transport_equipment(id);
 
+
+
+--- DDT-1017
+DROP TABLE IF EXISTS dcsa_im_v3_0.service_schedule CASCADE;
+CREATE TABLE dcsa_im_v3_0.service_schedule (
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    service_id uuid NOT NULL REFERENCES dcsa_im_v3_0.service (id),
+    carrier_id uuid NOT NULL REFERENCES dcsa_im_v3_0.carrier (id)
+);
+
+DROP TABLE IF EXISTS dcsa_im_v3_0.service_schedule_vessel_transportevent CASCADE;
+CREATE TABLE dcsa_im_v3_0.service_schedule_vessel_transportevent (
+    service_schedule_id uuid NOT NULL REFERENCES dcsa_im_v3_0.service_schedule (id),
+    vessel_id uuid NOT NULL REFERENCES dcsa_im_v3_0.vessel (id),
+    actual_arrival_event_id uuid NOT NULL REFERENCES dcsa_im_v3_0.transport_event (event_id),
+    planned_arrival_event_id uuid NOT NULL REFERENCES dcsa_im_v3_0.transport_event (event_id),
+    estimated_arrival_event_id uuid NOT NULL REFERENCES dcsa_im_v3_0.transport_event (event_id),
+    actual_departure_event_id uuid NOT NULL REFERENCES dcsa_im_v3_0.transport_event (event_id),
+    planned_departure_event_id uuid NOT NULL REFERENCES dcsa_im_v3_0.transport_event (event_id),
+    estimated_departure_event_id uuid NOT NULL REFERENCES dcsa_im_v3_0.transport_event (event_id),
+    port_call_status_event_id uuid NOT NULL REFERENCES dcsa_im_v3_0.transport_event (event_id),
+    transport_call_sequence integer NOT NULL
+);
+
+ALTER TABLE dcsa_im_v3_0.service
+    ADD universal_service_reference varchar(9) NULL UNIQUE;
+
+ALTER TABLE dcsa_im_v3_0.vessel
+    ADD is_dummy boolean NULL,
+    ADD lenght integer NULL,
+    ADD width integer NULL,
+    ADD dimension_unit varchar(3) NULL REFERENCES dcsa_im_v3_0.unit_of_measure(unit_of_measure_code) CONSTRAINT dimension_unit CHECK (dimension_unit IN ('FTL','MTR'))
+    ;
+
+ALTER TABLE dcsa_im_v3_0.transport_call
+    ADD transport_call_reference varchar(100) NULL UNIQUE;
+
+
 COMMIT;
