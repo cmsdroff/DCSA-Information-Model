@@ -23,3 +23,5 @@ SCO,Service contract owner,"The party signing the service contract with the carr
 BA,Booking Agent,"Party acting as a booking office for transport and forwarding services."
 HE,Carrier booking office (transportation office),"The carrier office responsible for processing the booking."
 GA,Road Carrier,"The Party moving the equipment by road"
+CF,Container Owner/Operator,The party that owns or operates the container
+GF,Slot Owner,Part owning the slot on a vessel 
