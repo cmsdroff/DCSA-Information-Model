@@ -26,3 +26,4 @@ SLU,Sludge service provider, "The party offering the Slugde services."
 SVP,Other service provider,Any other service not covered by a more specific code.
 END,Endorsee Party,Party to whom the title to the goods is transferred by means of endorsement.
 SPC,VGM Responsible Party, Party responsible for the declaration of the verified gross mass of a packed container under SOLAS
+WPA, Weighing Party, Party Responsible for the weighing of transport equipment typically used in verified gross mass 
