@@ -9,3 +9,4 @@ CSI,Customer shipment ID,Unique Shipment ID for the booking in the Shipper or Fo
 BPR,Booking party reference number,A unique identifier provided by a booking party in the booking request.
 BID,Booking Request ID,The associated booking request ID provided by the shipper.
 EQ,Equipment Reference,Reference to the equipment that is associated with document.
+TI,TIR Carnet Number, Reference used for movement under customs control.
